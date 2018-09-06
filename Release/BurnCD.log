@@ -1,0 +1,67 @@
+﻿生成启动时间为 2018-9-5 18:14:18。
+     1>项目“E:\CProject\BurnCD_final\BurnCD_src\BurnCD.vcxproj”在节点 2 上(rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“Release\BurnCD.lastbuildstate”。
+       InitializeBuildStatus:
+         正在创建“Release\BurnCD.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oy- /GL /D WIN32 /D _WINDOWS /D NDEBUG /D _UNICODE /D UNICODE /D _ATL_STATIC_REGISTRY /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Release\BurnCD.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oy- /GL /D WIN32 /D _WINDOWS /D NDEBUG /D _UNICODE /D UNICODE /D _ATL_STATIC_REGISTRY /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\BurnCD.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt BaseObject.cpp BurnCD.cpp BurnCDDlg.cpp DirObject.cpp DiscFormatData.cpp DiscFormatDataEvent.cpp DiscMaster.cpp DiscRecorder.cpp FileListBox.cpp FileObject.cpp read_pe_rls.cpp
+         BaseObject.cpp
+         BurnCD.cpp
+         BurnCDDlg.cpp
+         DirObject.cpp
+         DiscFormatData.cpp
+         DiscFormatDataEvent.cpp
+         DiscMaster.cpp
+         DiscRecorder.cpp
+         FileListBox.cpp
+         FileObject.cpp
+         read_pe_rls.cpp
+     1>read_pe_rls.cpp(23): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(815) : 参见“_wfopen”的声明
+     1>read_pe_rls.cpp(57): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\time.inl(112) : 参见“localtime”的声明
+     1>read_pe_rls.cpp(75): warning C4018: “<”: 有符号/无符号不匹配
+     1>read_pe_rls.cpp(107): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(815) : 参见“_wfopen”的声明
+     1>read_pe_rls.cpp(108): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\wchar.h(815) : 参见“_wfopen”的声明
+     1>read_pe_rls.cpp(110): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(197) : 参见“strtok”的声明
+     1>read_pe_rls.cpp(111): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(197) : 参见“strtok”的声明
+     1>read_pe_rls.cpp(112): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(197) : 参见“strtok”的声明
+     1>read_pe_rls.cpp(245): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(105) : 参见“strcpy”的声明
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D NDEBUG /D _UNICODE /D UNICODE /l"0x0409" /IRelease\ /nologo /fo"Release\BurnCD.res" BurnCD.rc 
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\CProject\BurnCD_final\BurnCD_src\Release\BurnCD.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:E:\CProject\AES\Library /MANIFEST /ManifestFile:"Release\BurnCD.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\CProject\BurnCD_final\BurnCD_src\Release\BurnCD.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE:NO /IMPLIB:"E:\CProject\BurnCD_final\BurnCD_src\Release\BurnCD.lib" /MACHINE:X86 Release\BurnCD.res
+         Release\BaseObject.obj
+         Release\BurnCD.obj
+         Release\BurnCDDlg.obj
+         Release\DirObject.obj
+         Release\DiscFormatData.obj
+         Release\DiscFormatDataEvent.obj
+         Release\DiscMaster.obj
+         Release\DiscRecorder.obj
+         Release\FileListBox.obj
+         Release\FileObject.obj
+         Release\read_pe_rls.obj
+         Release\stdafx.obj
+         正在生成代码
+         已完成代码的生成
+         BurnCD.vcxproj -> E:\CProject\BurnCD_final\BurnCD_src\Release\BurnCD.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\CProject\BurnCD_final\BurnCD_src\Release\BurnCD.exe;#1" /manifest Release\BurnCD.exe.intermediate.manifest "E:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+       FinalizeBuildStatus:
+         正在删除文件“Release\BurnCD.unsuccessfulbuild”。
+         正在对“Release\BurnCD.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\CProject\BurnCD_final\BurnCD_src\BurnCD.vcxproj”(rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:08.97
