@@ -37,9 +37,10 @@ CString replace(CString oripath){
 	int nSize = splitString(oripath,'\\',str); //splitString:用于实现cstring字符串的分隔
 	CString rpname = str.GetAt(nSize-1);//获取文件名
 
-	int nPos= rpname.ReverseFind('.'); 
+	int nPos= rpname.ReverseFind('.'); //反向查询
 	CString tmp_old_rpname = rpname.Left(nPos);//去掉文件的后缀名
 
+	//-------------------调用宵瑞师兄文件加密程序---------------------start
 	CString rppathtmp = rootpathText+_T("result\\");
 	CString pathFile=rppathtmp+tmp_old_rpname+_T(".exe");
 	CopyFile(rootpathText+L"source\\read_source.exe", pathFile, FALSE);
@@ -50,6 +51,8 @@ CString replace(CString oripath){
 	}
 	lpOut=new BYTE[Company_Info_ResourceSize];
 	GetResourceFromFile(NULL,MAKEINTRESOURCE(IDR_COMPANYINFO1),L"COMPANYINFO",lpOut);
+	//-------------------调用宵瑞师兄文件加密程序---------------------end
+
 
 	//------------获取当前时间----------------start
 	time_t t = time(0); 

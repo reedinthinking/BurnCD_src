@@ -24,6 +24,7 @@
 #define WM_BURN_FINISHED		WM_APP+301
 
 #define CLIENT_NAME		_T("BurnCD")//用于初始化recorder，，中文报错，待解决，不影响显示
+					//discFormatData.Initialize(discRecorder, CLIENT_NAME)
 
 
 // CBurnCDDlg dialog
@@ -107,6 +108,7 @@ BOOL CBurnCDDlg::OnInitDialog()
     return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
+//扫描设备，添加CDiscMaster和CDiscRecorder
 void CBurnCDDlg::AddRecordersToComboBox()
 {
     CDiscMaster			discMaster;
@@ -208,6 +210,12 @@ void CBurnCDDlg::AddRecordersToComboBox()
 //
 // Selected a New Device
 //
+//----------------------------------------------------------------------------
+//  function :CBurnCDDlg::OnCbnSelchangeDeviceCombo()
+//  purpose  : Selected a New Device  
+//  author   : zhangsanshan    date : 2018-9-30
+//
+//----------------------------------------------------------------------------
 void CBurnCDDlg::OnCbnSelchangeDeviceCombo()
 {
     m_isCdromSupported = false;
@@ -216,7 +224,8 @@ void CBurnCDDlg::OnCbnSelchangeDeviceCombo()
 
     m_mediaTypeCombo.ResetContent();
 
-    int selectedIndex = m_deviceComboBox.GetCurSel();
+    int selectedIndex = m_deviceComboBox.GetCurSel();//获取当前选定项的从零开始的索引，如果它是单项选择列表框。如果项目当前未选择，它是 LB_ERR。
+										//在多重选择列表框，具有焦点的项的索引。
     ASSERT(selectedIndex >= 0);
     if (selectedIndex < 0)
     {
@@ -224,7 +233,7 @@ void CBurnCDDlg::OnCbnSelchangeDeviceCombo()
     }
 
     CDiscRecorder* discRecorder = 
-        (CDiscRecorder*)m_deviceComboBox.GetItemDataPtr(selectedIndex);
+        (CDiscRecorder*)m_deviceComboBox.GetItemDataPtr(selectedIndex);//获取相应的CDiscRecorder
     if (discRecorder != NULL)
     {
         CDiscFormatData discFormatData;
@@ -270,6 +279,13 @@ void CBurnCDDlg::OnCbnSelchangeDeviceCombo()
     }
 }
 
+
+//----------------------------------------------------------------------------
+//  function : CBurnCDDlg::GetMediaTypeString(int mediaType)
+//  purpose  : get the support media type
+//  author   : zhangsanshan    date : 2018-9-30
+//
+//----------------------------------------------------------------------------
 CString	CBurnCDDlg::GetMediaTypeString(int mediaType)
 {
     switch (mediaType)
@@ -356,6 +372,12 @@ void CBurnCDDlg::OnLbnSelchangeBurnFileList()
     GetDlgItem(IDC_REMOVE_FILES_BUTTON)->EnableWindow(m_fileListbox.GetCurSel()!=-1);
 }
 
+//----------------------------------------------------------------------------
+//  function : CBurnCDDlg::OnBnClickedAddFilesButton()
+//  purpose  : get the added file
+//  author   : zhangsanshan    date : 2018-9-30
+//
+//----------------------------------------------------------------------------
 void CBurnCDDlg::OnBnClickedAddFilesButton()
 {
     CFileDialog fileDialog(TRUE, NULL, NULL, OFN_FILEMUSTEXIST, _T("添加文件 (*.*)|*.*||"), NULL, 0);
@@ -369,6 +391,13 @@ void CBurnCDDlg::OnBnClickedAddFilesButton()
     }
 }
 
+
+//----------------------------------------------------------------------------
+//  function : CBurnCDDlg::OnBnClickedAddFolderButton()
+//  purpose  : get the added folder
+//  author   : zhangsanshan    date : 2018-9-30
+//
+//----------------------------------------------------------------------------
 void CBurnCDDlg::OnBnClickedAddFolderButton()
 {
     BROWSEINFO bi = {0};
@@ -390,6 +419,12 @@ void CBurnCDDlg::OnBnClickedAddFolderButton()
     }
 }
 
+//----------------------------------------------------------------------------
+//  function : CBurnCDDlg::OnDestroy()
+//  purpose  : delete the file or delete the device
+//  author   : zhangsanshan    date : 2018-9-30
+//
+//----------------------------------------------------------------------------
 void CBurnCDDlg::OnDestroy()
 {
     int itemCount = m_fileListbox.GetCount();
@@ -408,6 +443,13 @@ void CBurnCDDlg::OnDestroy()
     CDialog::OnDestroy();
 }
 
+
+//----------------------------------------------------------------------------
+//  function : CBurnCDDlg::OnBnClickedBurnButton()
+//  purpose  : set the attribute and start the thread of burn
+//  author   : zhangsanshan    date : 2018-9-30
+//
+//----------------------------------------------------------------------------
 void CBurnCDDlg::OnBnClickedBurnButton()
 {
     if (m_isBurning)
