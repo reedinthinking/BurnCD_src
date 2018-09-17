@@ -213,7 +213,7 @@ void CBurnCDDlg::AddRecordersToComboBox()
 //----------------------------------------------------------------------------
 //  function :CBurnCDDlg::OnCbnSelchangeDeviceCombo()
 //  purpose  : Selected a New Device  
-//  author   : zhangsanshan    date : 2018-9-30
+//  author   : zhangsanshan    date : 2018-9-10
 //
 //----------------------------------------------------------------------------
 void CBurnCDDlg::OnCbnSelchangeDeviceCombo()
@@ -283,7 +283,7 @@ void CBurnCDDlg::OnCbnSelchangeDeviceCombo()
 //----------------------------------------------------------------------------
 //  function : CBurnCDDlg::GetMediaTypeString(int mediaType)
 //  purpose  : get the support media type
-//  author   : zhangsanshan    date : 2018-9-30
+//  author   : zhangsanshan    date : 2018-9-10
 //
 //----------------------------------------------------------------------------
 CString	CBurnCDDlg::GetMediaTypeString(int mediaType)
@@ -375,7 +375,7 @@ void CBurnCDDlg::OnLbnSelchangeBurnFileList()
 //----------------------------------------------------------------------------
 //  function : CBurnCDDlg::OnBnClickedAddFilesButton()
 //  purpose  : get the added file
-//  author   : zhangsanshan    date : 2018-9-30
+//  author   : zhangsanshan    date : 2018-9-10
 //
 //----------------------------------------------------------------------------
 void CBurnCDDlg::OnBnClickedAddFilesButton()
@@ -395,7 +395,7 @@ void CBurnCDDlg::OnBnClickedAddFilesButton()
 //----------------------------------------------------------------------------
 //  function : CBurnCDDlg::OnBnClickedAddFolderButton()
 //  purpose  : get the added folder
-//  author   : zhangsanshan    date : 2018-9-30
+//  author   : zhangsanshan    date : 2018-9-10
 //
 //----------------------------------------------------------------------------
 void CBurnCDDlg::OnBnClickedAddFolderButton()
@@ -422,7 +422,7 @@ void CBurnCDDlg::OnBnClickedAddFolderButton()
 //----------------------------------------------------------------------------
 //  function : CBurnCDDlg::OnDestroy()
 //  purpose  : delete the file or delete the device
-//  author   : zhangsanshan    date : 2018-9-30
+//  author   : zhangsanshan    date : 2018-9-10
 //
 //----------------------------------------------------------------------------
 void CBurnCDDlg::OnDestroy()
@@ -447,7 +447,7 @@ void CBurnCDDlg::OnDestroy()
 //----------------------------------------------------------------------------
 //  function : CBurnCDDlg::OnBnClickedBurnButton()
 //  purpose  : set the attribute and start the thread of burn
-//  author   : zhangsanshan    date : 2018-9-30
+//  author   : zhangsanshan    date : 2018-9-10
 //
 //----------------------------------------------------------------------------
 void CBurnCDDlg::OnBnClickedBurnButton()
@@ -467,6 +467,13 @@ void CBurnCDDlg::OnBnClickedBurnButton()
     }
 }
 
+
+//----------------------------------------------------------------------------
+//  function : CBurnCDDlg::BurnThread(LPVOID pParam)
+//  purpose  : the thread of burn
+//  author   : zhangsanshan    date : 2018-9-11
+//
+//----------------------------------------------------------------------------
 UINT CBurnCDDlg::BurnThread(LPVOID pParam)
 {
     CBurnCDDlg* pThis = (CBurnCDDlg*)pParam;
@@ -593,13 +600,12 @@ UINT CBurnCDDlg::BurnThread(LPVOID pParam)
     return 0;
 }
 
-/////////////////////////////////////////////////////////////////////////////
+//----------------------------------------------------------------------------
+//  function : CreateMediaFileSystem(CBurnCDDlg* pThis, IMAPI_MEDIA_PHYSICAL_TYPE mediaType, IStream** ppDataStream)
+//  purpose  : create the filesystem by adding the select file or folder into the filesystem
+//  author   : zhangsanshan    date : 2018-9-11
 //
-// CBurnCDDlg::CreateMediaFileSystem
-//
-// Description
-//		Creates an IStream used to 
-//
+//----------------------------------------------------------------------------
 bool CBurnCDDlg::CreateMediaFileSystem(CBurnCDDlg* pThis, IMAPI_MEDIA_PHYSICAL_TYPE mediaType, IStream** ppDataStream)
 {
     IFileSystemImage*		image = NULL;
@@ -808,6 +814,12 @@ LRESULT CBurnCDDlg::OnBurnFinished(WPARAM hResult, LPARAM lpMessage)
     return 0;
 }
 
+//----------------------------------------------------------------------------
+//  function : CBurnCDDlg::OnImapiUpdate(WPARAM wParam, LPARAM lParam)
+//  purpose  : the description of the burning process
+//  author   : zhangsanshan    date : 2018-9-11
+//
+//----------------------------------------------------------------------------
 LRESULT CBurnCDDlg::OnImapiUpdate(WPARAM wParam, LPARAM lParam)
 {
     IMAPI_FORMAT2_DATA_WRITE_ACTION currentAction = 
@@ -837,13 +849,15 @@ LRESULT CBurnCDDlg::OnImapiUpdate(WPARAM wParam, LPARAM lParam)
         break;
 
     case IMAPI_FORMAT2_DATA_WRITE_ACTION_WRITING_DATA:
-        UpdateTimes(pImapiStatus->totalTime, pImapiStatus->remainingTime);
+        
         UpdateBuffer(pImapiStatus->usedSystemBuffer, pImapiStatus->totalSystemBuffer);
         UpdateProgress(pImapiStatus->lastWrittenLba-pImapiStatus->startLba, pImapiStatus->sectorCount);
+		UpdateTimes(pImapiStatus->totalTime, pImapiStatus->remainingTime);
         break;
 
     case IMAPI_FORMAT2_DATA_WRITE_ACTION_FINALIZATION:
         //m_progressText.SetWindowText(_T("Finalizing writing..."));
+		//UpdateTimes(pImapiStatus->totalTime, pImapiStatus->remainingTime);
 		m_progressText.SetWindowText(_T("ÕýÔÚ½áÊø¿ÌÂ¼..."));
         break;
 
@@ -856,6 +870,12 @@ LRESULT CBurnCDDlg::OnImapiUpdate(WPARAM wParam, LPARAM lParam)
     return GetCancelBurning() ? RETURN_CANCEL_WRITE : RETURN_CONTINUE;
 }
 
+//----------------------------------------------------------------------------
+//  function : CBurnCDDlg::OnImapiUpdate(WPARAM wParam, LPARAM lParam)
+//  purpose  : the update about the time of burning
+//  author   : zhangsanshan    date : 2018-9-11
+//
+//----------------------------------------------------------------------------
 void CBurnCDDlg::UpdateTimes(LONG totalTime, LONG remainingTime)
 {
     //

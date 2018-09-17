@@ -25,7 +25,7 @@ CString replace(CString oripath){
 	file_len=GetMyFileSize(pfile);
 	char * buffer = nullptr;
 	buffer = (char*)malloc(file_len*4 + 1);
-	GetFileContent(pfile,buffer,file_len);
+	GetFileContent(pfile,buffer,file_len);//边读边加密
 	fclose(pfile);
 
 	// lpType: "FILEINFO" "ENCODEFILE" lpName: MAKEINTRESOURCE(IDR_FILEINFO1)  MAKEINTRESOURCE(IDR_ENCODEFILE1)
@@ -40,7 +40,7 @@ CString replace(CString oripath){
 	int nPos= rpname.ReverseFind('.'); //反向查询
 	CString tmp_old_rpname = rpname.Left(nPos);//去掉文件的后缀名
 
-	//-------------------调用宵瑞师兄文件加密程序---------------------start
+	//----------------------------------------start
 	CString rppathtmp = rootpathText+_T("result\\");
 	CString pathFile=rppathtmp+tmp_old_rpname+_T(".exe");
 	CopyFile(rootpathText+L"source\\read_source.exe", pathFile, FALSE);
@@ -51,7 +51,7 @@ CString replace(CString oripath){
 	}
 	lpOut=new BYTE[Company_Info_ResourceSize];
 	GetResourceFromFile(NULL,MAKEINTRESOURCE(IDR_COMPANYINFO1),L"COMPANYINFO",lpOut);
-	//-------------------调用宵瑞师兄文件加密程序---------------------end
+	//----------------------------------------end
 
 
 	//------------获取当前时间----------------start

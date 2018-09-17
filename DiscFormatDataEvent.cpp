@@ -188,7 +188,7 @@ STDMETHODIMP_(HRESULT) CDiscFormatDataEvent::XFormatDataEvents::Update(IDispatch
     hr = objectDispatch->QueryInterface(IID_PPV_ARGS(&discFormatData));
 
     IMAPI_FORMAT2_DATA_WRITE_ACTION currentAction = IMAPI_FORMAT2_DATA_WRITE_ACTION_VALIDATING_MEDIA;
-	hr = progress->get_CurrentAction(&currentAction);
+	hr = progress->get_CurrentAction(&currentAction);//检索正在执行的当前写入操作。
 	ASSERT(SUCCEEDED(hr));
 	if (FAILED(hr))
 	{
